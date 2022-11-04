@@ -1,11 +1,16 @@
 <template>
+  <h1>Imaginary Futures Oracle: Answer Archive</h1>
+
   <div class="d-flex-col centered">
-    <p class="align-right bold">user #{{ currentUserId }}</p>
+    <div class="user bold">
+      <p>user #{{ currentUserId }}</p>
+    </div>
 
     <div class="d-flex-center border-box">
       <h3>{{ currentAnswer }}</h3>
     </div>
-    <div class="d-flex-row footer bold">
+
+    <div class="footer bold">
       <button @click="prev">&#60;</button>
       <p>{{ counter + 1 }}/{{ flatData.length }}</p>
       <button @click="next">&#62;</button>
@@ -49,10 +54,10 @@ export default {
     handleKeyPress(e) {
       //if next key is pressed
       if (e.keyCode === 39) {
-        this.next;
+        this.next();
         // if prev key is pressed
       } else if (e.keyCode === 37) {
-        this.prev;
+        this.prev();
       }
     },
 
@@ -117,7 +122,7 @@ export default {
   --primaryRGB: rgba(255, 68, 0, 0.3);
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Trebuchet MS";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -129,10 +134,14 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
 .footer {
   display: flex;
   justify-content: space-between;
+  font-family: "Courier New";
+}
+.user {
+  align-self: flex-start;
+  font-family: "Courier New";
 }
 button {
   all: unset;
@@ -147,7 +156,7 @@ button {
 .border-box {
   border: solid 1px var(--primaryColor);
   box-shadow: 7px 7px 1px 1px var(--primaryRGB);
-  padding: 10px;
+  padding: 20px;
   height: 20rem;
   width: 60rem;
   max-width: 80vw;
@@ -159,9 +168,7 @@ button {
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
-.align-right {
-  align-self: flex-start;
-}
+
 .bold {
   font-weight: bold;
 }
