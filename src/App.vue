@@ -1,11 +1,15 @@
 <template>
-  <div class="d-flex centered">
+  <div class="d-flex-col centered">
     <p class="align-right bold">user #{{ currentUserId }}</p>
 
-    <div class="box">
+    <div class="d-flex-center border-box">
       <h3>{{ currentAnswer }}</h3>
     </div>
-    <p class="bold">{{ counter + 1 }}/{{ flatData.length + 1 }}</p>
+    <div class="d-flex-row footer bold">
+      <button @click="prev">&#60;</button>
+      <p>{{ counter + 1 }}/{{ flatData.length + 1 }}</p>
+      <button @click="next">&#62;</button>
+    </div>
   </div>
 </template>
 
@@ -18,6 +22,11 @@ export default {
     return {
       data: data,
       counter: 0,
+      touchstartX: 0,
+      touchstartY: 0,
+      touchendX: 0,
+      touchendY: 0,
+      
     };
   },
   computed: {
@@ -41,32 +50,67 @@ export default {
     handleKeyPress(e) {
       //if next key is pressed
       if (e.keyCode === 39) {
-        // and if counter is at last element
-        if (this.counter == this.flatData.length) {
-          //go to first element
-          this.counter = 0;
-        } else {
-          //else count up
-          this.counter++;
-        }
+        this.next();
         // if prev key is pressed
       } else if (e.keyCode === 37) {
-        // and if counter is at first element
-        if (this.counter == 0) {
-          //go to last element
-          this.counter = this.flatData.length;
-          // else if the typewriter is not typing then go to next text
-        } else {
-          this.counter--;
-        }
+        this.prev();
+      }
+    },
+
+    next() {
+      // counter is at last element
+      if (this.counter == this.flatData.length) {
+        //go to first element
+        this.counter = 0;
+      } else {
+        //else count up
+        this.counter++;
+      }
+    },
+    prev() {
+      // if counter is at first element
+      if (this.counter == 0) {
+        //go to last element
+        this.counter = this.flatData.length;
+        // else if the typewriter is not typing then go to next text
+      } else {
+        this.counter--;
+      }
+    },
+    handleTouchGesture() {
+      if (this.touchendX < this.touchstartX) {
+        console.log("Swiped Left");
+      }
+
+      if (this.touchendX > this.touchstartX) {
+        console.log("Swiped Right");
       }
     },
   },
   mounted() {
     window.addEventListener("keydown", this.handleKeyPress);
+    window.addEventListener(
+      "touchstart",
+      function (event) {
+        this.touchstartX = event.changedTouches[0].screenX;
+        this.touchstartY = event.changedTouches[0].screenY;
+      },
+      false
+    );
+
+    window.addEventListener(
+      "touchend",
+      function (event) {
+        this.touchendX = event.changedTouches[0].screenX;
+        this.touchendY = event.changedTouches[0].screenY;
+        this.handleTouchGesture();
+      },
+      false
+    );
   },
   beforeUnmount() {
     window.removeEventListener("keydown", this.handleKeyPress);
+    //TODO: remove touchgesture
   },
 };
 </script>
@@ -76,7 +120,7 @@ export default {
   --white: #ffffff;
   --black: #242424;
   --primaryColor: #ff4400;
-  --primaryRGB: rgba(255,68,0,0.3)
+  --primaryRGB: rgba(255, 68, 0, 0.3);
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -87,14 +131,26 @@ export default {
 
   margin-top: 60px;
 }
-.d-flex {
+.d-flex-col {
   display: flex;
   flex-direction: column;
 }
-.box {
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  all: unset;
+  cursor: pointer;
+  font-size: 40px;
+}
+.d-flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.border-box {
   border: solid 1px var(--primaryColor);
   box-shadow: 7px 7px 1px 1px var(--primaryRGB);
   padding: 10px;
