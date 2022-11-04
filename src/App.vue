@@ -98,7 +98,7 @@ export default {
   border: solid 1px var(--primaryColor);
   box-shadow: 7px 7px 1px 1px var(--primaryRGB);
   padding: 10px;
-  height: 10rem;
+  height: 20rem;
   width: 60rem;
   max-width: 80vw;
 }
