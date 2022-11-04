@@ -1,19 +1,21 @@
 <template>
-  <h1>Imaginary Futures Oracle: Answer Archive</h1>
-
   <div class="d-flex-col centered">
-    <div class="user bold">
-      <p>user #{{ currentUserId }}</p>
-    </div>
+    <h1>Imaginary Futures Oracle: Answer Archive</h1>
 
-    <div class="d-flex-center border-box">
-      <h3>{{ currentAnswer }}</h3>
-    </div>
+    <div class="d-flex-col">
+      <div class="user bold">
+        <p>user #{{ currentUserId }}</p>
+      </div>
 
-    <div class="footer bold">
-      <button @click="prev">&#60;</button>
-      <p>{{ counter + 1 }}/{{ flatData.length }}</p>
-      <button @click="next">&#62;</button>
+      <div class="d-flex-center border-box">
+        <h3>{{ currentAnswer }}</h3>
+      </div>
+
+      <div class="footer bold">
+        <button @click="prev">&#60;</button>
+        <p>{{ counter + 1 }}/{{ flatData.length }}</p>
+        <button @click="next">&#62;</button>
+      </div>
     </div>
   </div>
 </template>
