@@ -90,7 +90,7 @@ export default {
   },
   mounted() {
     window.addEventListener("keydown", this.handleKeyPress);
-    window.addEventListener(
+    body.addEventListener(
       "touchstart",
       function (event) {
         this.touchstartX = event.changedTouches[0].screenX;
@@ -99,7 +99,7 @@ export default {
       false
     );
 
-    window.addEventListener(
+    body.addEventListener(
       "touchend",
       function (event) {
         this.touchendX = event.changedTouches[0].screenX;
