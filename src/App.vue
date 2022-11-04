@@ -1,6 +1,4 @@
 <template>
-  <!-- <HelloWorld msg="Oracle Archive" /> -->
-
   <div class="d-flex centered">
     <p class="align-right bold">user #{{ currentUserId }}</p>
 
@@ -12,14 +10,10 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
 import data from "./assets/oracleData.json";
 
 export default {
   name: "App",
-  components: {
-    // HelloWorld,
-  },
   data() {
     return {
       data: data,
