@@ -37,7 +37,6 @@ export default {
           flattenedData.push({ userId: index + 1, answer: answer });
         });
       });
-      console.log(flattenedData);
       return flattenedData;
     },
     currentAnswer() {
@@ -80,17 +79,19 @@ export default {
     },
     handleTouchGesture() {
       if (this.touchendX < this.touchstartX) {
+        this.next();
         console.log("Swiped Left");
       }
 
       if (this.touchendX > this.touchstartX) {
         console.log("Swiped Right");
+        this.prev();
       }
     },
   },
   mounted() {
     window.addEventListener("keydown", this.handleKeyPress);
-    body.addEventListener(
+    window.addEventListener(
       "touchstart",
       function (event) {
         this.touchstartX = event.changedTouches[0].screenX;
@@ -99,7 +100,7 @@ export default {
       false
     );
 
-    body.addEventListener(
+    window.addEventListener(
       "touchend",
       function (event) {
         this.touchendX = event.changedTouches[0].screenX;
