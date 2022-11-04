@@ -26,7 +26,6 @@ export default {
       touchstartY: 0,
       touchendX: 0,
       touchendY: 0,
-      
     };
   },
   computed: {
@@ -50,16 +49,16 @@ export default {
     handleKeyPress(e) {
       //if next key is pressed
       if (e.keyCode === 39) {
-        this.next();
+        this.next;
         // if prev key is pressed
       } else if (e.keyCode === 37) {
-        this.prev();
+        this.prev;
       }
     },
 
     next() {
       // counter is at last element
-      if (this.counter == this.flatData.length-1) {
+      if (this.counter == this.flatData.length - 1) {
         //go to first element
         this.counter = 0;
       } else {
@@ -71,7 +70,7 @@ export default {
       // if counter is at first element
       if (this.counter == 0) {
         //go to last element
-        this.counter = this.flatData.length-1;
+        this.counter = this.flatData.length - 1;
         // else if the typewriter is not typing then go to next text
       } else {
         this.counter--;
@@ -88,27 +87,20 @@ export default {
         this.prev();
       }
     },
+    handleTouchStart(event) {
+      this.touchstartX = event.changedTouches[0].screenX;
+      this.touchstartY = event.changedTouches[0].screenY;
+    },
+    handleTouchEnd(event) {
+      this.touchendX = event.changedTouches[0].screenX;
+      this.touchendY = event.changedTouches[0].screenY;
+      this.handleTouchGesture();
+    },
   },
   mounted() {
     window.addEventListener("keydown", this.handleKeyPress);
-    window.addEventListener(
-      "touchstart",
-      function (event) {
-        this.touchstartX = event.changedTouches[0].screenX;
-        this.touchstartY = event.changedTouches[0].screenY;
-      },
-      false
-    );
-
-    window.addEventListener(
-      "touchend",
-      function (event) {
-        this.touchendX = event.changedTouches[0].screenX;
-        this.touchendY = event.changedTouches[0].screenY;
-        this.handleTouchGesture();
-      },
-      false
-    );
+    window.addEventListener("touchstart", this.handleTouchStart);
+    window.addEventListener("touchend", this.handleTouchEnd);
   },
   beforeUnmount() {
     window.removeEventListener("keydown", this.handleKeyPress);
