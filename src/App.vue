@@ -7,7 +7,7 @@
     </div>
     <div class="d-flex-row footer bold">
       <button @click="prev">&#60;</button>
-      <p>{{ counter + 1 }}/{{ flatData.length + 1 }}</p>
+      <p>{{ counter + 1 }}/{{ flatData.length }}</p>
       <button @click="next">&#62;</button>
     </div>
   </div>
@@ -37,6 +37,7 @@ export default {
           flattenedData.push({ userId: index + 1, answer: answer });
         });
       });
+      console.log(flattenedData);
       return flattenedData;
     },
     currentAnswer() {
@@ -59,7 +60,7 @@ export default {
 
     next() {
       // counter is at last element
-      if (this.counter == this.flatData.length) {
+      if (this.counter == this.flatData.length-1) {
         //go to first element
         this.counter = 0;
       } else {
@@ -71,7 +72,7 @@ export default {
       // if counter is at first element
       if (this.counter == 0) {
         //go to last element
-        this.counter = this.flatData.length;
+        this.counter = this.flatData.length-1;
         // else if the typewriter is not typing then go to next text
       } else {
         this.counter--;
