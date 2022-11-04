@@ -129,7 +129,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: var(--primaryColor);
-
   margin-top: 60px;
 }
 .d-flex-col {
