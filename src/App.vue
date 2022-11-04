@@ -118,8 +118,8 @@ export default {
 :root {
   --white: #ffffff;
   --black: #242424;
-  --primaryColor: #ff4400;
-  --primaryRGB: rgba(255, 68, 0, 0.3);
+  --primaryColor: #ff5e00;
+  --primaryRGB: rgba(255, 94, 0, 0.3);
 }
 #app {
   font-family: "Trebuchet MS";
@@ -168,8 +168,10 @@ button {
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
-
 .bold {
   font-weight: bold;
+}
+h1 {
+  margin: 40px;
 }
 </style>
