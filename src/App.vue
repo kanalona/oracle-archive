@@ -100,6 +100,7 @@ export default {
   padding: 10px;
   height: 10rem;
   width: 60rem;
+  max-width: 80vw;
 }
 .centered {
   position: fixed;
