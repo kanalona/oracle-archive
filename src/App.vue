@@ -148,7 +148,7 @@ export default {
 button {
   all: unset;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 30px;
 }
 .d-flex-center {
   display: flex;
